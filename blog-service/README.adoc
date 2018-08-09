@@ -5,3 +5,8 @@
   * Build via `gradle bootJar`
   * Run afterwards via `java -jar build/libs/blog-0.0.1-SNAPSHOT.jar`
   * Open browser at link:http://localhost:8080[]
+
+
+== Helpful links and documentation
+
+  * link:https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html[Spring Boot: Testing]
