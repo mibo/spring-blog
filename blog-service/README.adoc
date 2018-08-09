@@ -10,3 +10,10 @@
 == Helpful links and documentation
 
   * link:https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html[Spring Boot: Testing]
+
+== Links and Tools to test
+
+=== Tools
+
+  * OpenClover for code coverage reports link:http://openclover.org/downloads[]
+  ** Corresponding _Gradle plugin_: link:https://github.com/bmuschko/gradle-clover-plugin/blob/master/README.md[gradle-clover-plugin]
