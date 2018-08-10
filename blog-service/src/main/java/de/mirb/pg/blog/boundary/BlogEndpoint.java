@@ -52,4 +52,14 @@ public class BlogEndpoint {
         .map(ResponseEntity::ok)
         .orElse(ResponseEntity.notFound().build());
   }
+
+  @PutMapping(value = "/entry/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<BlogEntry> updateEntry(@PathVariable("id") String id,
+                                                  @RequestBody BlogRequestEntry requestEntry) {
+    LOG.debug("Update entry with id {} and content {}...", id, requestEntry.getContent());
+    Optional<BlogEntry> entry = blogService.updateEntry(id, requestEntry.getContent());
+    return entry
+        .map(ResponseEntity::ok)
+        .orElse(ResponseEntity.notFound().build());
+  }
 }

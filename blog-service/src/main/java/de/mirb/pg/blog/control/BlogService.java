@@ -29,12 +29,12 @@ public class BlogService {
     return created.block();
   }
 
-  public BlogEntry updateEntry(String id, String content) {
-//    BlogEntry be = blogEntries.get(id);
+  public Optional<BlogEntry> updateEntry(String id, String content) {
     Optional<BlogEntry> found = repository.findById(id).blockOptional();
-    return found
-        .map(blogEntry -> BlogEntry.from(blogEntry).content(content).create())
-        .orElse(null);
+    return found.map(blogEntry ->
+      repository.save(
+          BlogEntry.from(blogEntry).content(content).create()).block());
+
     //    Mono<Void> updated = Mono.when(found.compose(e ->
 //        Mono.just(repository.save(
 //            BlogEntry.from(e.block()).content(content).create()))));

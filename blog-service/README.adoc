@@ -12,6 +12,7 @@
   * Create new entry: `http http://localhost:8080/blog/entry username=mibo content=text`
   ** The response contains the corresponding `Location` header and the `id` in the content.
   * Get single entry: `http http://localhost:8080/blog/entry/<id>` (use `id` from creation)
+  * Update existing entry: `http PUT  http://localhost:8080/blog/entry/<id> content=another_text`
 
 == Helpful links and documentation
 
