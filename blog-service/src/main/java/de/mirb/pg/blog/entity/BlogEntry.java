@@ -1,11 +1,15 @@
 package de.mirb.pg.blog.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.lang.NonNull;
 
 import java.util.Date;
+import java.util.UUID;
 
+@Document(collection = "BlogEntry")
 public class BlogEntry {
-  private final String id;
+  @Id private final String id;
   private Date createdAt;
   private String createdBy;
   private String content;
@@ -17,12 +21,15 @@ public class BlogEntry {
 //    this.content = content;
 //  }
 
-  private BlogEntry(@NonNull String id) {
+  public BlogEntry(@NonNull String id) {
     this.id = id;
   }
 
-  public static BlogEntry.Builder with(String id) {
-    return new BlogEntry.Builder(id);
+//  public static BlogEntry.Builder with(String id) {
+//    return new BlogEntry.Builder(id);
+//  }
+  public static BlogEntry.Builder createBy(String user) {
+    return new BlogEntry.Builder(UUID.randomUUID().toString()).createdBy(user);
   }
 
   public static BlogEntry.Builder from(BlogEntry be) {
@@ -62,6 +69,7 @@ public class BlogEntry {
 
     Builder(String id) {
       be = new BlogEntry(id);
+      be.createdAt = new Date();
     }
 
     Builder(BlogEntry entry) {
