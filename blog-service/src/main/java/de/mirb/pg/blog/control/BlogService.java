@@ -2,13 +2,13 @@ package de.mirb.pg.blog.control;
 
 import de.mirb.pg.blog.entity.BlogEntry;
 import de.mirb.pg.blog.entity.BlogRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class BlogService {
@@ -31,12 +31,17 @@ public class BlogService {
 
   public BlogEntry updateEntry(String id, String content) {
 //    BlogEntry be = blogEntries.get(id);
-    Mono<BlogEntry> found = repository.findById(id);
-    found.blockOptional().ifPresent(e -> {
-        repository.save(BlogEntry.from(e).content(content).create());
-      }
-    );
-    return null;
+    Optional<BlogEntry> found = repository.findById(id).blockOptional();
+    return found
+        .map(blogEntry -> BlogEntry.from(blogEntry).content(content).create())
+        .orElse(null);
+    //    Mono<Void> updated = Mono.when(found.compose(e ->
+//        Mono.just(repository.save(
+//            BlogEntry.from(e.block()).content(content).create()))));
+  }
+
+  public Optional<BlogEntry> getById(String id) {
+    return repository.findById(id).blockOptional();
   }
 
   public Collection<BlogEntry> getAllEntries() {

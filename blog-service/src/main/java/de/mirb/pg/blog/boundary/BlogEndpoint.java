@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/blog")
@@ -41,5 +42,14 @@ public class BlogEndpoint {
     LOG.debug("Get all entries...");
     Collection<BlogEntry> entries = blogService.getAllEntries();
     return ResponseEntity.ok(entries);
+  }
+
+  @GetMapping(value = "/entry/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<BlogEntry> getSingleEntry(@PathVariable("id") String id) {
+    LOG.debug("Get entry with id {}...", id);
+    Optional<BlogEntry> entry = blogService.getById(id);
+    return entry
+        .map(ResponseEntity::ok)
+        .orElse(ResponseEntity.notFound().build());
   }
 }
