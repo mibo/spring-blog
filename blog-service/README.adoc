@@ -6,6 +6,16 @@
   * Run afterwards via `java -jar build/libs/blog-0.0.1-SNAPSHOT.jar`
   * Open browser at link:http://localhost:8080[]
 
+=== Run via Docker
+
+==== Build
+  . Build project (run `gradle build`)
+  . Change to directory `docker` and run via: `docker build -t mibo/pg-blog-service -f Dockerfile ..` to build Docker image (`latest`)
+
+==== Run
+Run (and remove afterwards) via: `docker run -it --rm --hostname blog-service -p 8080:8080 mibo/pg-blog-service`
+
+
 === Sample commands
 
   * Get all entries: `http http://localhost:8080/blog/entry`
@@ -22,5 +32,8 @@
 
 === Tools
 
+  * Docker Tools
+  ** link:https://github.com/fabric8io/docker-maven-plugin[fabric8io/docker-maven-plugin]
+  ** link:https://github.com/spotify/dockerfile-maven[spotify/dockerfile-maven]
   * OpenClover for code coverage reports link:http://openclover.org/downloads[]
   ** Corresponding _Gradle plugin_: link:https://github.com/bmuschko/gradle-clover-plugin/blob/master/README.md[gradle-clover-plugin]
