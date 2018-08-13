@@ -1,0 +1,20 @@
+version: '2'
+services:
+  blog-service:
+    image: 'mibo/pg-blog-service:latest'
+    depends_on:
+      - mongodb
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  mongodb:
+    image: 'bitnami/mongodb:latest'
+    ports:
+      - "27017:27017"
+    volumes:
+      - db-data:/bitnami
+
+volumes:
+  db-data:
