@@ -16,7 +16,7 @@ apply plugin: 'io.spring.dependency-management'
 //apply plugin: 'com.palantir.docker'
 
 group = 'de.mirb.pg.blog'
-version = '0.0.1'
+version = '0.1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
