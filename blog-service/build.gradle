@@ -10,6 +10,10 @@ buildscript {
 	}
 }
 
+plugins {
+    id 'com.palantir.docker' version '0.20.1'
+}
+
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
@@ -21,6 +25,12 @@ sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
+}
+
+docker {
+    name 'mibo/pg-blog-service'
+    dockerfile project.file('docker/DockerfilePlugin')
+    files tasks.bootJar.outputs.files
 }
 
 dependencies {

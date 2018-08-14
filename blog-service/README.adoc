@@ -8,13 +8,26 @@
 
 === Run via Docker
 
-==== Build
+==== Build manually
   . Build project (run `gradle build`)
   . Change to directory `docker` and run via: `docker build -t mibo/pg-blog-service -f Dockerfile ..` to build Docker image (`latest`)
 
-==== Run
+==== Run manually
 Run (and remove afterwards) via: `docker run -it --rm --hostname blog-service -p 8080:8080 mibo/pg-blog-service`
 
+==== Build via Gradle plugin
+Used link:https://github.com/palantir/gradle-docker[Gradle: Docker Plugin] for Docker images creation.
+
+Configured in `build.gradle` with:
+```groovy
+docker {
+    name 'mibo/pg-blog-service'
+    dockerfile project.file('docker/DockerfilePlugin')
+    files tasks.bootJar.outputs.files
+}
+```
+
+Corresponding _task_ is `gradle docker` to build the Docker image.
 
 === Sample commands
 
@@ -35,5 +48,7 @@ Run (and remove afterwards) via: `docker run -it --rm --hostname blog-service -p
   * Docker Tools
   ** link:https://github.com/fabric8io/docker-maven-plugin[fabric8io/docker-maven-plugin]
   ** link:https://github.com/spotify/dockerfile-maven[spotify/dockerfile-maven]
+  ** link:https://github.com/avast/gradle-docker-compose-plugin[Gradle: Docker Compose Plugin]
+  ** link:https://github.com/palantir/gradle-docker[Gradle: Docker Plugin]
   * OpenClover for code coverage reports link:http://openclover.org/downloads[]
   ** Corresponding _Gradle plugin_: link:https://github.com/bmuschko/gradle-clover-plugin/blob/master/README.md[gradle-clover-plugin]
