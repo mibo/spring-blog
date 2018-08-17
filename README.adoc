@@ -37,3 +37,9 @@ Will be realized with _Spring_ and _Kotlin_.
 
 == Runtime
 To run these services link:https://www.docker.com/[Docker] (see https://hub.docker.com/u/mibo[mibo@DockerHub]).
+
+== Links, Tools, further information
+
+=== Gradle
+
+  * link:https://stackoverflow.com/questions/6122252/gradle-alternate-to-mvn-install[gradle-alternate-to-mvn-install]

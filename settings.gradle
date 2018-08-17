@@ -9,3 +9,4 @@
 rootProject.name = 'spring-blog'
 
 include 'blog-service'
+include 'blog-service-it'
